@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp" 
+    android:background="@drawable/card_bg_r4">
+    
+   
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_name"
+        android:textSize="20sp"
+        android:text="Course_Name"
+        android:layout_alignParentLeft="true"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_code"
+        android:textSize="15sp"
+        android:text="Course_Code"
+        android:layout_below="@id/course_name"
+        android:layout_marginTop="5dp"
+        android:layout_alignLeft="@id/course_name"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_room"
+        android:textSize="20sp"
+        android:text="Room"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+    
+
+</RelativeLayout>

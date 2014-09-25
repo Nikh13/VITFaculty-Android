@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp" >
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/employee_id"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:ems="10" 
+        android:hint="Password"/>
+    
+    <LinearLayout 
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+        
+        <Button 
+            android:id="@+id/dialog_login"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="Login"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"/>
+        <View 
+            android:id="@+id/button_divider"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"
+            android:background="@android:color/darker_gray"/>
+        <Button 
+            android:id="@+id/dialog_cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Cancel"
+            android:background="@android:color/transparent"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:id="@+id/vertical_divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_above="@id/button_layout"/>
+
+    <EditText
+        android:id="@+id/employee_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:ems="10" 
+        android:hint="EmpID">
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>
