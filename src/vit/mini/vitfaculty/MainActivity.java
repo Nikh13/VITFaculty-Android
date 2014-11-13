@@ -18,6 +18,7 @@ import vit.mini.vitfaculty.fragments.CoursesPage;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Entity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
@@ -37,6 +38,7 @@ public class MainActivity extends FragmentActivity {
 	SharedPreferences prefs;
 	public static Context context;
 	static String GET_TOKEN = "getaccesstoken";
+	static String GET_TIMETABLE = "gettimetable";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,12 @@ public class MainActivity extends FragmentActivity {
 		editor.putString("token", token);
 		editor.commit();
 	}
+	protected void addScheduleToCache(String schedule) {
+		// TODO Auto-generated method stub
+		Editor editor = prefs.edit();
+		editor.putString("schedule", schedule);
+		editor.commit();
+	}
 
 	public void dismissDialog() {
 		alertDialog.dismiss();
@@ -150,6 +158,7 @@ public class MainActivity extends FragmentActivity {
 		ProgressDialog pd;
 		String result=null;
 		String empid = null;
+		String schedule = null;
 		String password = null;
 		
 		@Override
@@ -164,14 +173,18 @@ public class MainActivity extends FragmentActivity {
 			empid = params[0];
 			password = params[1];
 			HttpPost post = new HttpPost(CommonLib.SERVER+GET_TOKEN);
+			HttpPost post1 = new HttpPost(CommonLib.SERVER+GET_TIMETABLE);
 			List<NameValuePair> nvp = new ArrayList<NameValuePair>(2);
 			nvp.add(new BasicNameValuePair("empid", empid));
 			nvp.add(new BasicNameValuePair("passwordhash", password));
+			List<NameValuePair> nvp1 = new ArrayList<NameValuePair>(2);
+			nvp1.add(new BasicNameValuePair("token", prefs.getString("token","")));
 			try {
 				post.setEntity(new UrlEncodedFormEntity(nvp));
 				HttpResponse response = HttpManager.execute(post);
+				HttpResponse response1 = HttpManager.execute(post1);
 				result = EntityUtils.toString(response.getEntity());
-				
+				schedule = EntityUtils.toString(response1.getEntity());
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -193,6 +206,7 @@ public class MainActivity extends FragmentActivity {
 				if(!token.equals("")){
 					dismissDialog();
 					addToCache(Integer.parseInt(empid),password,token);
+					addScheduleToCache(schedule);
 				}
 				else{
 					Toast.makeText(getApplicationContext(),
