@@ -115,10 +115,15 @@ public class StudentsPage extends Fragment {
 	// }
 	// }
 	// };
+	
+	private boolean menuIsInflated;
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.fragment_itemdetail, menu);
+		if (!menuIsInflated) {
+			inflater.inflate(R.menu.fragment_itemdetail, menu);
+			menuIsInflated= true;
+		}
 	}
 
 	@Override
